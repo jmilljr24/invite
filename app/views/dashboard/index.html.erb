@@ -10,7 +10,6 @@
     method: "PATCH" do |form| %>
       <%= form.label :rehearsal, "Invite to Rehearsal Dinner?" %>
       <%= form.check_box :rehearsal, {onchange: 'this.form.submit();'} %>
-      <%= form.hidden_field :user %>
     <% end %>
   </br>
 <% end %>
