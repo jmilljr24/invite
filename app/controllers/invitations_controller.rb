@@ -25,7 +25,7 @@ class InvitationsController < ApplicationController
 
     respond_to do |format|
       if @invitation.save
-        format.html { redirect_to invitation_url(@invitation), notice: "Invitation was successfully created." }
+        format.html { redirect_to dashboard_path, notice: "Invitation was successfully created." }
         format.json { render :show, status: :created, location: @invitation }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -36,9 +36,10 @@ class InvitationsController < ApplicationController
 
   # PATCH/PUT /invitations/1 or /invitations/1.json
   def update
+    # debugger
     respond_to do |format|
       if @invitation.update(invitation_params)
-        format.html { redirect_to invitation_url(@invitation), notice: "Invitation was successfully updated." }
+        format.html { redirect_to dashboard_path, notice: "Invitation was successfully updated." }
         format.json { render :show, status: :ok, location: @invitation }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +53,7 @@ class InvitationsController < ApplicationController
     @invitation.destroy!
 
     respond_to do |format|
-      format.html { redirect_to invitations_url, notice: "Invitation was successfully destroyed." }
+      format.html { redirect_to dashboard_path, notice: "Invitation was successfully destroyed." }
       format.json { head :no_content }
     end
   end

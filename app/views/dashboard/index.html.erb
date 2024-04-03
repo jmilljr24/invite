@@ -1,4 +1,17 @@
 <div>
   <h1 class="font-bold text-4xl">Dashboard#index</h1>
   <p>Find me in app/views/dashboard/index.html.erb</p>
+  <%= link_to 'new user',  new_user_registration_path %>
+  <div>The website User Code is "millertime2024"</div>
+  <% @users.each do |user|%>
+    <br>
+    <%= user.email %>
+    <%= form_with model: user.invitation,
+    method: "PATCH" do |form| %>
+      <%= form.label :rehearsal, "Invite to Rehearsal Dinner?" %>
+      <%= form.check_box :rehearsal, {onchange: 'this.form.submit();'} %>
+      <%= form.hidden_field :user %>
+    <% end %>
+  </br>
+<% end %>
 </div>

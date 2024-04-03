@@ -14,6 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
+    resource.create_invitation!
   end
 
   # GET /resource/edit

@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   get "dashboard/" => "dashboard#index", :as => :dashboard
-  resources :invitations
 
   devise_for :users, controllers: {registrations: "users/registrations"}
+
+  resources :invitations
+
   # resources :users, except: :create
   # post "create_user" => "users/registrations#create", :as => :create_user
 
