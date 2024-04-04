@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :profiles
   get "dashboard/" => "dashboard#index", :as => :dashboard
 
   devise_for :users, controllers: {registrations: "users/registrations"}
