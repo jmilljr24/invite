@@ -4,6 +4,21 @@
   <% if current_user.admin? %>
     <%= link_to 'Admin Dashboard',  dashboard_path %>
   <% end %>
+  <%= form_with(url: profiles_path, method: :get, data: {controller:
+  "search-form", turbo_stream: true }) do |form| %>
+    <%= form.label :query, "Search your name:", class: "block mb-2" %>
+    <div class="flex space-x-3">
+      <%= form.text_field :query, data: {action: "input->search-form#search"},
+      autocomplete: "off", class: "py-3 px-4 rounded border ring-0 focus:ring-4
+      focus:ring-orange-100 focus:shadow-none focus:border-orange-500
+      focus:outline-none" %>
+      <%= form.submit 'Search', class: "px-4 py-3 font-medium
+  bg-orange-300 text-neutal-900 rounded flex items-center cursor-pointer hover:bg-orange-400 focus:ring-4 ring-0 focus:ring-orange-100" %>
+    </div>
+  <% end %>
+  <div class="my-6">
+    <%= render "/profiles/profiles", profiles: @profiles %>
+  </div>
   <br>
   <% if current_user.profile.rehearsal? %>
     <div>You are invited the Rehearsal! </div>

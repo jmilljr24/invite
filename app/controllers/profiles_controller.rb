@@ -3,7 +3,13 @@ class ProfilesController < ApplicationController
 
   # GET /profiles or /profiles.json
   def index
-    @profiles = Profile.all
+    unless params[:query].blank?
+      @profiles = if params[:query].present?
+        Profile.where("name ILIKE ?", "%#{params[:query]}%").or(
+          Profile.where("guest ILIKE ?", "%#{params[:query]}%")
+        )
+      end
+    end
   end
 
   # GET /profiles/1 or /profiles/1.json

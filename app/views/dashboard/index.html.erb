@@ -3,20 +3,16 @@
   <br>
   <%= link_to 'Add Guest',  new_user_registration_path %>
   <div>The website User Code is "millertime2024"</div>
-  <% @users.each do |user|%>
-    <br>
-    <%= user.email %>
-    <% unless user.profile.nil? %>
-      <%= user.profile&.name.capitalize %>
-      <% if !user.profile.guest.nil? %>
-        <span>& <%= user.profile.guest %></span>
-      <% end %>
-      <%= form_with model: user.profile, method: :patch do |form| %>
-        <%= form.label :rehearsal, "Invite to Rehearsal Dinner?" %>
-        <%= form.check_box :rehearsal, {onchange: 'this.form.submit();'} %>
-      <% end %>
-    <% end %>
-    <%= link_to 'Edit Guest Information', edit_profile_path(user.profile.id) %>
-    <br>
+  <%= form_with(url: profiles_path, method: :get, data: {controller:
+  "search-form", turbo_stream: true }) do |form| %>
+    <%= form.label :query, "Search your name:", class: "block mb-2" %>
+    <div class="flex space-x-3">
+      <%= form.text_field :query, autocomplete: "off", data: {action: "input->search-form#search"}, class: "py-3 px-4 rounded border ring-0 focus:ring-4 focus:ring-orange-100 focus:shadow-none focus:border-orange-500 focus:outline-none" %>
+      <%= form.submit 'Search', class: "px-4 py-3 font-medium
+  bg-orange-300 text-neutal-900 rounded flex items-center cursor-pointer hover:bg-orange-400 focus:ring-4 ring-0 focus:ring-orange-100" %>
+    </div>
   <% end %>
+  <div class="my-6">
+    <%= render "/profiles/profiles", profiles: @profiles %>
+  </div>
 </div>

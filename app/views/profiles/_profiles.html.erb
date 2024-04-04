@@ -1,0 +1,19 @@
+<div id="profiles">
+  <% if profiles %>
+    <% profiles.each do |profile| %>
+      <%= profile.name.capitalize %>
+      <% if !profile.guest.nil? %>
+        <span>& <%= profile.guest.capitalize %></span>
+      <% end %>
+      <% if current_user.admin %>
+        <%= profile.user.email %>
+        <%= form_with model: profile, method: :patch do |form| %>
+          <%= form.label :rehearsal, "Invite to Rehearsal Dinner?" %>
+          <%= form.check_box :rehearsal, {onchange: 'this.form.submit();'} %>
+        <% end %>
+        <%= link_to 'Edit guest Information', edit_profile_path(profile.id) %>
+      <% end %>
+      <br>
+    <% end %>
+  <% end %>
+</div>
