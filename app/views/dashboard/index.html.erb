@@ -6,8 +6,7 @@
   <% @users.each do |user|%>
     <br>
     <%= user.email %>
-    <%= form_with model: user.invitation,
-    method: "PATCH" do |form| %>
+    <%= form_with url: profile_path(user.profile.id), method: :patch do |form| %>
       <%= form.label :rehearsal, "Invite to Rehearsal Dinner?" %>
       <%= form.check_box :rehearsal, {onchange: 'this.form.submit();'} %>
     <% end %>
