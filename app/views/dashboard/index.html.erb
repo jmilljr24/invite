@@ -5,10 +5,12 @@
   <div>The website User Code is "millertime2024"</div>
   <% @users.each do |user|%>
     <br>
-    <%= user.email %>
-    <%= form_with url: profile_path(user.profile.id), method: :patch do |form| %>
-      <%= form.label :rehearsal, "Invite to Rehearsal Dinner?" %>
-      <%= form.check_box :rehearsal, {onchange: 'this.form.submit();'} %>
+    <% unless user.profile.nil? %>
+      <%= user.email %>
+      <%= form_with model: user.profile, method: :patch do |form| %>
+        <%= form.label :rehearsal, "Invite to Rehearsal Dinner?" %>
+        <%= form.check_box :rehearsal, {onchange: 'this.form.submit();'} %>
+      <% end %>
     <% end %>
   </br>
 <% end %>
