@@ -7,30 +7,34 @@ class Users::RegistrationsController < Devise::RegistrationsController
   skip_before_action :require_no_authentication
 
   # GET /resource/sign_up
-  def new
-    super
-  end
+  # def new
+  #   super
+  # end
 
   # POST /resource
   def create
     super
     resource.create_invitation!
+    respond_to do |format|
+      format.html { redirect_to dashboard_path }
+      return
+    end
   end
 
   # GET /resource/edit
-  def edit
-    super
-  end
+  # def edit
+  #   super
+  # end
 
   # PUT /resource
-  def update
-    super
-  end
+  # def update
+  #   super
+  # end
 
   # DELETE /resource
-  def destroy
-    super
-  end
+  # def destroy
+  #   super
+  # end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
