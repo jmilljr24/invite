@@ -4,4 +4,10 @@
   <% if current_user.admin? %>
     <%= link_to 'Admin Dashboard',  dashboard_path %>
   <% end %>
+  <br>
+  <% if current_user.profile.rehearsal? %>
+    <div>You are invited the Rehearsal! </div>
+  <% end %>
+  <br>
+  <div>You are invited to the Wedding!</div>
 </div>

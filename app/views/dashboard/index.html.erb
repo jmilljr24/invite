@@ -4,9 +4,13 @@
   <%= link_to 'Add Guest',  new_user_registration_path %>
   <div>The website User Code is "millertime2024"</div>
   <% @users.each do |user|%>
+    <%= user.email %>
     <br>
     <% unless user.profile.nil? %>
-      <%= user.email %>
+      <%= user.profile&.name.capitalize %>
+      <% if !user.profile.guest.nil? %>
+        <span>& <%= user.profile.guest %></span>
+      <% end %>
       <%= form_with model: user.profile, method: :patch do |form| %>
         <%= form.label :rehearsal, "Invite to Rehearsal Dinner?" %>
         <%= form.check_box :rehearsal, {onchange: 'this.form.submit();'} %>
