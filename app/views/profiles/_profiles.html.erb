@@ -5,7 +5,7 @@
       <% if !profile.guest.nil? %>
         <span>& <%= profile.guest.capitalize %></span>
       <% end %>
-      <% if current_user.admin %>
+      <% if user_signed_in? && current_user.admin %>
         <%= profile.user.email %>
         <%= form_with model: profile, method: :patch do |form| %>
           <%= form.label :rehearsal, "Invite to Rehearsal Dinner?" %>

@@ -1,7 +1,12 @@
 <div>
   <h1 class="font-bold text-4xl">Dashboard</h1>
   <br>
+  <%= link_to 'Home', root_path %>
+  <br>
+  <br>
   <%= link_to 'Add Guest',  new_user_registration_path %>
+  <br>
+  <br>
   <div>The website User Code is "millertime2024"</div>
   <%= form_with(url: profiles_path, method: :get, data: {controller:
   "search-form", turbo_stream: true }) do |form| %>
