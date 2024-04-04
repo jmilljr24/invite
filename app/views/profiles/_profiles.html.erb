@@ -1,9 +1,11 @@
 <div id="profiles">
   <% if profiles %>
     <% profiles.each do |profile| %>
-      <%= profile.name.capitalize %>
-      <% if !profile.guest.nil? %>
-        <span>& <%= profile.guest.capitalize %></span>
+      <%= button_to guest_login_path, params: {profile_id: profile.id}, method: :get, data: {turbo_stream: true } do %>
+        <%= profile.name.capitalize %>
+        <% if !profile.guest.nil? %>
+          <span>& <%= profile.guest.capitalize %></span>
+        <% end %>
       <% end %>
       <% if user_signed_in? && current_user.admin %>
         <%= profile.user.email %>

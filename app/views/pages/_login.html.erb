@@ -1,0 +1,13 @@
+<%= profile.name %>
+<% resource = User.new %>
+<% resource_name = :user %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= f.hidden_field :email, value: profile.user.email %>
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password, autocomplete: "off", value: "" %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Enter" %>
+  </div>
+<% end %>
